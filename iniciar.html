@@ -96,21 +96,21 @@
         <div class="aforma">
               <div id="login">
                 <h1>¡Bienvenido!</h1>
-                <p>Panel de administracion escolar</p>
+                <p>Panel de administracion escolar</p><br>
                 <form action="/" method="post">
                   <div class="field-wrap">
                   <label>
-                    Email Address<span class="req">*</span>
+                    Correo<span class="req">*</span>
                   </label>
                   <input type="email"required autocomplete="off"/>
                 </div>
                 <div class="field-wrap">
                   <label>
-                    Password<span class="req">*</span>
+                    Contraseña<span class="req">*</span>
                   </label>
                   <input type="password"required autocomplete="off"/>
                 </div>
-                <p class="forgot"><a href="#">Forgot Password?</a></p>
+                <p class="orgot"><a href="#">Recuperar contraseña</a></p>
                 <button class="button button-block"/>Log In</button>
                 </form>
               </div>
@@ -235,13 +235,52 @@
         }
     }
 
+    .tab-group {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        li a {
+            display: block;
+            text-decoration: none;
+            padding: 15px;
+            background: rgba(#a0b3b0);
+            color: #a0b3b0;
+            font-size: 20px;
+            float: left;
+            width: 50%;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.5s ease;
+            &:hover {
+                background: #179b77;
+                color: #ffffff;
+            }
+        }
+        .active a {
+            background: #1ab188;
+            color: #ffffff;
+        }
+    }
+
+    .tab-content > div:last-child {
+        display: none;
+    }
+
     .aforma{
-        border: 2px solid red;
+        border: 2px;
         /* background-color: rgba(#13232f, 0.9); */
         background-color: rgba(36, 49, 60, 1);
-        width: fit-content;
-        padding: 10px;
+        width: max-content;
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 40px;
         margin: auto;
+        box-shadow: 0 4px 10px 4px rgba(36, 49, 60, 0.3);
     }
 
     h1 {
@@ -298,8 +337,8 @@
 
     label {
         position: absolute;
-        transform: translateY(6px);
-        left: 13px;
+        transform: translateY(-36px);
+        left: 0px;
         color: rgba(255, 255, 255, 0.5);
         transition: all 0.25s ease;
         /* -webkit-backface-visibility: hidden; */
@@ -309,19 +348,6 @@
             margin: 2px;
             color: #1ab188;
         }
-    }
-
-    label.active {
-        transform: translateY(50px);
-        left: 2px;
-        font-size: 14px;
-        .req {
-            opacity: 0;
-        }
-    }
-
-    label.highlight {
-        color: #ffffff;
     }
 
     .button {
