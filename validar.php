@@ -1,17 +1,10 @@
 <?php
+session_start();
 include('db.php');
-$email=$_POST['email'];
-// echo($email);
-$password=$_POST['password'];
-// echo($password);
+$conexion = $_SESSION['conexion'];
 
-$consulta="SELECT*FROM admins where mail='$email' and pass='$password'";
-$resultado=mysqli_query($conexion,$consulta);
-
-$filas=mysqli_num_rows($resultado);
-
-if($filas){
-  header("location:home.php");
+if($conexion){
+  header("location:home.html");
 }else{
   ?>
   <?php
@@ -21,4 +14,3 @@ if($filas){
   <?php
 }
 mysqli_free_result($resultado);
-mysqli_close($conexion);
