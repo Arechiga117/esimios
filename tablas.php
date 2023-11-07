@@ -1,19 +1,25 @@
 <?php
-session_start();
-// $conexion = $_SESSION['conexion'];
+    require_once("Modelo.php");
+    session_start();
+    $modelo = new Modelo();
+    $docentes=[];
+    $materias=[];
+    $alumnos=[];
+    // var_dump($alumnos);
+    // echo (isset($_GET["opcion"]))?$_GET["opcion"]:'';
+    switch ($_GET["opcion"]) {
+        case 'materias':
+                $materias = $modelo->getMaterias();
+            break;
+            case 'docentes':
+                $docentes = $modelo->getDocentes();
+            break;
+        case 'alumnos':
+                $alumnos = $modelo->getAlumnos();
+            break;
+        default:
 
-
-$resultado=mysqli_query($_SESSION['conexion'],"Show tables;");
-
-
-if ($resultado) {
-    echo "Lista de tablas en la base de datos:<br>";
-
-    while ($fila = mysqli_fetch_array($resultado)) {
-        echo $fila[0] . "<br>"; // Imprime el nombre de cada tabla
+            break;
     }
-} else {
-    echo "Error en la consulta: " . mysqli_error($conexion);
-}
-mysqli_free_result($resultado);
+
 

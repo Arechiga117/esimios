@@ -4,5 +4,3 @@
     mysqli_close($conexion);
     session_unset();
     session_destroy();
-?>
-?>

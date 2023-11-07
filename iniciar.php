@@ -83,7 +83,7 @@
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contacto</a>
                 </div>
-                <a href="Iniciar.html" class="btn btn-primary py-2 px-4 d-none d-lg-block">Iniciar Sesion</a>
+                <a href="iniciar.html" class="btn btn-primary py-2 px-4 d-none d-lg-block">Iniciar Sesion</a>
             </div>
         </nav>
     </div>
@@ -100,9 +100,9 @@
                 <form action="validar.php" method="post">
                     <div class="field-wrap">
                         <label>
-                            Correo<span class="req">*</span>
+                            Usuario<span class="req">*</span>
                         </label>
-                        <input name="email" autocomplete="off"/>
+                        <input name="user" autocomplete="off"/>
                     </div>
                     <div class="field-wrap">
                         <label>
@@ -113,6 +113,7 @@
                     <p class="forgot"><a href="#">Recuperar contraseña</a></p>
                     <button type="submit" class="button button-block"/>Iniciar Sesion</button>
                 </form>
+                <p class="error"> <?php echo (isset($_GET["error"]))?$_GET["error"]:''; ?> </p>
             </div>
         </div>
     </div>
@@ -383,11 +384,7 @@
         left: 41%;
     }
 
-    .bad{
+    .error{
         color: red;
-        font-size: large;
-        display: inline-block;
-        margin: auto;
-        /* border: 2px solid red; */
     }
 </style>

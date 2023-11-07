@@ -1,3 +1,4 @@
+<?php require_once("tablas.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,7 +96,76 @@
         </div>
     </div>
     <!-- Header End -->
-    <a href="tablas.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Tablas</a>
+    <a href="home.php?opcion=materias" class="btn btn-primary py-2 px-4">Materias</a>
+    <a href="home.php?opcion=docentes" class="btn btn-primary py-2 px-4">Docentes</a>
+    <a href="home.php?opcion=alumnos" class="btn btn-primary py-2 px-4">Alumnos</a>
+    <div class="tabladiv">
+        <table class="tabla" border="1" <?php count($materias)==0?'style="display: none;"':''?> >
+            <?php
+                // var_dump($materias);
+                foreach ($materias as $a => $materia) {
+                    echo "<tr>";
+                    echo "<td>";
+                    echo $materia['ID'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $materia['asignatura'];
+                    echo "</td>";
+                }
+            ?>
+        </table>
+        <table class="tabla" border="1" <?php count($docentes)==0?'style="display: none;"':''?> >
+            <?php
+                // var_dump($docentes);
+                foreach ($docentes as $a => $docente) {
+                    echo "<tr>";
+                    echo "<td>";
+                    echo $docente['ID'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $docente['Nombre'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $docente['A_paterno'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $docente['A_materno'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $docente['asignatura'];
+                    echo "</td>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
+        <table class="tabla" border="1" <?php count($alumnos)==0?'style="display: none;"':''?> >
+            <?php
+                // var_dump($alumnos);
+                foreach ($alumnos as $a => $alumno) {
+                    echo "<tr>";
+                    echo "<td>";
+                    echo $alumno['ID'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $alumno['Nombre'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $alumno['A_paterno'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $alumno['A_materno'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $alumno['Grado'];
+                    echo "</td>";
+                    echo "<td>";
+                    echo "<a href='editarphp/editarAlumno.php?xyt=" . $alumno["ID"] . "&class=alumno' class=''>Editar</a>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
+    </div>
 
     <!-- Footer Start -->
         <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
@@ -190,3 +260,9 @@
 </body>
 
 </html>
+
+<style>
+    .tabla{
+        margin: 30px;
+    }
+</style>
