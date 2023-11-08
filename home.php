@@ -96,11 +96,22 @@
         </div>
     </div>
     <!-- Header End -->
-    <a href="home.php?opcion=materias" class="btn btn-primary py-2 px-4">Materias</a>
-    <a href="home.php?opcion=docentes" class="btn btn-primary py-2 px-4">Docentes</a>
-    <a href="home.php?opcion=alumnos" class="btn btn-primary py-2 px-4">Alumnos</a>
+    <div class="menudiv">
+        <a href="home.php?opcion=materias" class="btn btn-primary py-2 px-4" <?php echo ($_GET["opcion"]=="materias")?'style="background-color:#1447D9;"':''?> >Materias</a>
+        <a href="home.php?opcion=docentes" class="btn btn-primary py-2 px-4" <?php echo ($_GET["opcion"]=="docentes")?'style="background-color:#1447D9;"':''?> >Docentes</a>
+        <a href="home.php?opcion=alumnos" class="btn btn-primary py-2 px-4" <?php echo ($_GET["opcion"]=="alumnos")?'style="background-color:#1447D9;"':''?> >Alumnos</a>
+        <a href="insertarphp/crearMateria.php?class=materia" class="btn btn-success py-2 px-4" <?php echo (count($materias)==0)?'style="display: none;"':''?> >Añadir Materia</a>
+        <a href="insertarphp/crearDocente.php?class=docente" class="btn btn-success py-2 px-4" <?php echo (count($docentes)==0)?'style="display: none;"':''?> >Añadir Docente</a>
+        <a href="insertarphp/crearAlumno.php?class=alumno" class="btn btn-success py-2 px-4" <?php echo (count($alumnos)==0)?'style="display: none;"':''?> >Añadir Alumno</a>
+    </div>
+    <?php echo isset(($_GET["error"]))?'<p class="bad">No se pudo eliminar porque tiene dependencias</p>':''; ?>
     <div class="tabladiv">
-        <table class="tabla" border="1" <?php count($materias)==0?'style="display: none;"':''?> >
+        <table class="tabla" border="1" <?php echo count($materias)==0?'style="display: none;"':''?> >
+            <tr class="thead">
+                <th>Numero</th>
+                <th>Asignatura</th>
+                <th colspan="2">Opciones</th>
+            </tr>
             <?php
                 // var_dump($materias);
                 foreach ($materias as $a => $materia) {
@@ -111,10 +122,31 @@
                     echo "<td>";
                     echo $materia['asignatura'];
                     echo "</td>";
+                    echo "<td>";
+                    echo "<a href='editarphp/editarMateria.php?xyt=" . $materia["ID"] . "&class=materia' class=''>Editar</a>";
+                    echo "</td>";
+                    echo "<td>";
+            ?>
+                <form id='elid-<?php echo $materia["ID"] ?>' method='post' action="eliminarphp/eliminando.php?class=materia" onsubmit="return false">
+                    <input class="hiden" type='' name='id' value= "<?php echo $materia["ID"] ?>" />
+                    <input class="eliminarbtn" type="submit" onclick="eliminar('elid-<?php echo $materia["ID"] ?>', '<?php echo $materia["asignatura"] ?>' )" value="Eliminar">
+                </form>
+            <?php
+                    echo "</td>";
+                    echo "</tr>";
                 }
             ?>
+            </tbody>
         </table>
-        <table class="tabla" border="1" <?php count($docentes)==0?'style="display: none;"':''?> >
+        <table class="tabla" border="1" <?php echo count($docentes)==0?'style="display: none;"':''?> >
+            <tr class="thead">
+                <th>Numero</th>
+                <th>Nombre</th>
+                <th>Apellido paterno</th>
+                <th>Apellido materno</th>
+                <th>Materia</th>
+                <th colspan="2">Opciones</th>
+            </tr>
             <?php
                 // var_dump($docentes);
                 foreach ($docentes as $a => $docente) {
@@ -134,11 +166,30 @@
                     echo "<td>";
                     echo $docente['asignatura'];
                     echo "</td>";
+                    echo "<td>";
+                    echo "<a href='editarphp/editarDocente.php?xyt=" . $docente["ID"] . "&class=docente' class=''>Editar</a>";
+                    echo "</td>";
+                    echo "<td>";
+            ?>
+                <form id='elid-<?php echo $docente["ID"] ?>' method='post' action="eliminarphp/eliminando.php?class=docente" onsubmit="return false">
+                    <input class="hiden" type='' name='id' value= "<?php echo $docente["ID"] ?>" />
+                    <input class="eliminarbtn" type="submit" onclick="eliminar('elid-<?php echo $docente["ID"] ?>', '<?php echo $docente["Nombre"] ?>' )" value="Eliminar">
+                </form>
+            <?php
+                    echo "</td>";
                     echo "</tr>";
                 }
             ?>
         </table>
-        <table class="tabla" border="1" <?php count($alumnos)==0?'style="display: none;"':''?> >
+        <table class="tabla" border="1" <?php echo count($alumnos)==0?'style="display: none;"':''?> >
+            <tr class="thead">
+                <th>Numero</th>
+                <th>Nombre</th>
+                <th>Apellido paterno</th>
+                <th>Apellido materno</th>
+                <th>Grado</th>
+                <th colspan="2">Opciones</th>
+            </tr>
             <?php
                 // var_dump($alumnos);
                 foreach ($alumnos as $a => $alumno) {
@@ -160,6 +211,14 @@
                     echo "</td>";
                     echo "<td>";
                     echo "<a href='editarphp/editarAlumno.php?xyt=" . $alumno["ID"] . "&class=alumno' class=''>Editar</a>";
+                    echo "</td>";
+                    echo "<td>";
+            ?>
+                <form id='elid-<?php echo $alumno["ID"] ?>' method='post' action="eliminarphp/eliminando.php?class=alumno" onsubmit="return false">
+                    <input class="hiden" type='' name='id' value= "<?php echo $alumno["ID"] ?>" />
+                    <input class="eliminarbtn" type="submit" onclick="eliminar('elid-<?php echo $alumno["ID"] ?>', '<?php echo $alumno["Nombre"] ?>' )" value="Eliminar">
+                </form>
+            <?php
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -261,8 +320,76 @@
 
 </html>
 
+<script>
+    function eliminar(id,name){
+        document.getElementById(id).addEventListener('submit', function (event) {
+        // Prevenir el envío del formulario por defecto
+        event.preventDefault();
+        if (confirm('Deseas Eliminar realmente asi bien seguro porque no se podra recuperar. Elimniando: ' + name)) {
+            console.log(id,name);
+            this.submit();
+        }
+        });
+    }
+</script>
+
+
 <style>
-    .tabla{
-        margin: 30px;
+    .menudiv{
+        margin-top: 20px;
+        padding: 10px;
+        /* margin-left: 7%; */
+        /* margin-right: 7%; */
+        display: flex;
+        justify-content: center;
+        /* border: 2px solid red; */
+        /* background-color: black; */
+        /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
+        /* background-image: radial-gradient(circle at 37.72% -19.64%, #93b2ff 0, #2f77da 50%, #0043ad 100%); */
+    }
+    .tabladiv{
+        margin-top: 20px;
+        padding: 10px;
+        /* margin-left: 7%; */
+        /* margin-right: 7%; */
+        display: flex;
+        justify-content: center;
+        /* border: 2px solid red; */
+        /* background-color: black; */
+        /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
+        background-image: radial-gradient(circle at 37.72% -19.64%, #93b2ff 0, #2f77da 50%, #0043ad 100%);
+    }
+    .hiden{
+        display: none;
+    }
+    .eliminarbtn{
+        border: none;
+        background-color: transparent;
+        color: red;
+    }
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        overflow: hidden;
+    	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    th, td {
+        padding: 15px;
+        background-color: rgba(255,255,255,0.2);
+        color: #fff;
+    }
+    th {
+        text-align: left;
+    }
+    .thead {
+        background-color: #112993;
+    }
+    a {
+        color: white;
+    }
+    .bad{
+        text-align: center;
+        /* border: 2px solid red; */
+        color: red;
     }
 </style>

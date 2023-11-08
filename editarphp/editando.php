@@ -10,11 +10,12 @@
     $xyt = isset($_GET["xyt"])?$_GET["xyt"]:0;
     switch ($_GET["class"]) {
         case 'materia':
-                $materia = $modelo->getMaterias($xyt);
-            break;
-            case 'docente':
-                $docente = $modelo->getDocentes($xyt);
-            break;
+            $materia = $modelo->getMaterias($xyt);
+        break;
+        case 'docente':
+            $materias = $modelo->getMaterias();
+            $docente = $modelo->getDocentes($xyt);
+        break;
         case 'alumno':
                 $grados = $modelo->getGrados();
                 $alumno = $modelo->getAlumnos($xyt);
@@ -22,6 +23,12 @@
         case 'alumno_e':
                 $alumno = $modelo->editAlumno();
             break;
+        case 'docente_e':
+            $docente = $modelo->editDocente();
+        break;
+        case 'materia_e':
+            $materia = $modelo->editMateria();
+        break;
         default:
 
             break;

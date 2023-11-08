@@ -1,3 +1,4 @@
+<?php //include_once("creando.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +20,7 @@
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -61,7 +62,7 @@
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-            <a href="index.html" class="navbar-brand ml-lg-3">
+            <a href="../index.html" class="navbar-brand ml-lg-3">
                 <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-book-reader mr-3"></i>ESIMIA</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -69,21 +70,21 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Inicio</a>
-                    <a href="about.html" class="nav-item nav-link">Nosotros</a>
-                    <a href="course.html" class="nav-item nav-link">Preparatoria</a>
+                    <a href="../index.html" class="nav-item nav-link active">Inicio</a>
+                    <a href="../about.html" class="nav-item nav-link">Nosotros</a>
+                    <a href="../course.html" class="nav-item nav-link">Preparatoria</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cursos</a>
                         <div class="dropdown-menu m-0">
-                            <a href="detail.html" class="dropdown-item">Detalles</a>
-                            <a href="feature.html" class="dropdown-item">Our Features</a>
-                            <a href="team.html" class="dropdown-item">Instructors</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="../detail.html" class="dropdown-item">Detalles</a>
+                            <a href="../feature.html" class="dropdown-item">Our Features</a>
+                            <a href="../team.html" class="dropdown-item">Instructors</a>
+                            <a href="../testimonial.html" class="dropdown-item">Testimonial</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contacto</a>
+                    <a href="../contact.html" class="nav-item nav-link">Contacto</a>
                 </div>
-                <a href="iniciar.html" class="btn btn-primary py-2 px-4 d-none d-lg-block">Iniciar Sesion</a>
+                <a href="../cerrar.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Cerrar Sesion</a>
             </div>
         </nav>
     </div>
@@ -95,34 +96,26 @@
     <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
         <div class="aforma bg-dark">
             <div id="login">
-                <h1>¡Bienvenido!</h1>
-                <p>Panel de administracion escolar</p><br>
-                <form action="validar.php?" method="post">
+                <h1>Crear Materia</h1>
+                <p><?php ?></p><br>
+                <form action="creando.php?class=materia" method="post">
                     <div class="field-wrap">
                         <label>
-                            Usuario<span class="req">*</span>
+                            Nombre de la Asignatura<span class="req">*</span>
                         </label>
-                        <input name="user" autocomplete="off"/>
+                        <input name="asignatura" autocomplete="off"/>
                     </div>
-                    <div class="field-wrap">
-                        <label>
-                            Contraseña<span class="req">*</span>
-                        </label>
-                        <input name="password" type="password" autocomplete="off"/>
-                    </div>
-                    <button type="submit" class="button button-block"/>Iniciar Sesion</button>
+                    <!-- <p class="forgot"><a href="#">Recuperar contraseña</a></p> -->
+                    <button type="submit" class="button button-block"/>Guardar</button>
                 </form>
-                <p class="error"> <?php echo (isset($_GET["error"]))?$_GET["error"]:''; ?> </p>
             </div>
         </div>
     </div>
 
     <!-- Header End -->
 
-
-
     <!-- Footer Start -->
-     <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
         <div class="container mt-5 pt-5">
             <div class="row">
                 <div class="col-md-6 mb-5">
@@ -381,9 +374,5 @@
         /* border: 2px solid green; */
         top: 65.5%;
         left: 41%;
-    }
-
-    .error{
-        color: red;
     }
 </style>
